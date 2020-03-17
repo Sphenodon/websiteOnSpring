@@ -1,0 +1,9 @@
+.navbar-nav {
+    text-align: center;
+}
+@media screen and (max-width: 1000px) {
+    #signOutIfMobile {
+        visibility: hidden;
+        display: none;
+    }
+}
