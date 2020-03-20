@@ -5,10 +5,10 @@
     <h4>Здравствуй, путник</h4>
     <div>
         <div class="container mt-3">
-            <p>Евгений круть</p>
+            <p></p>
             <p></p>
         </div>
-        <form action="/login" method="post">
+        <form class="mt-5" action="/login" method="post">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Имя</label>
                 <div class="col-sm-6">
