@@ -1,7 +1,7 @@
 <#import "parts/commonP.ftlh" as c>
 
 <@c.page>
-    <h5>Ку, ${username}</h5>
+    <h5>Привет, ${username}</h5>
     ${message!}
     <div class="accordion mt-4" id="accordionProfile">
         <form method="post">
