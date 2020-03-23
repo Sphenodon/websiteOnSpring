@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Message{
+public class NewsMessages{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,19 +26,13 @@ public class Message{
 
     private String filename;
 
-    private String puzzle_href;
-
-    private Long puzzle_difficult;
-
-    public Message() {
+    public NewsMessages() {
     }
 
-    public Message(String text, String tag, User user, String puzzle_href, Long puzzle_difficult){
+    public NewsMessages(String text, String tag, User user){
         this.author = user;
         this.text = text;
         this.tag = tag;
-        this.puzzle_href = puzzle_href;
-        this.puzzle_difficult = puzzle_difficult;
     }
 
     public String getAuthorName(){
@@ -83,21 +77,5 @@ public class Message{
 
     public void setFilename(String filename) {
         this.filename = filename;
-    }
-
-    public String getPuzzle_href() {
-        return puzzle_href;
-    }
-
-    public void setPuzzle_href(String puzzle_href) {
-        this.puzzle_href = puzzle_href;
-    }
-
-    public Long getPuzzle_difficult() {
-        return puzzle_difficult;
-    }
-
-    public void setPuzzle_difficult(Long puzzle_difficult) {
-        this.puzzle_difficult = puzzle_difficult;
     }
 }

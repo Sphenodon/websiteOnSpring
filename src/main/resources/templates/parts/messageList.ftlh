@@ -8,7 +8,11 @@
                 </#if>
                 <div class="m-2">
                     <span>${message.text}</span><br/>
-                    <i>#${message.tag}</i>
+                    <#if message.puzzle_href?? && message.author.id != currentUserId>
+                        <a href="/games?href=${message.puzzle_href}&difficult=${message.puzzle_difficult}" title="Собрать пазл"><i>#${message.tag}</i></a>
+                    <#else>
+                        <i>#${message.tag}</i>
+                    </#if>
                 </div>
                 <div class="card-footer text-muted">
                     <#if (message.author.id)??>

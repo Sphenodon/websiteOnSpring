@@ -3,26 +3,36 @@ const PUZZLE_HOVER_TINT = '#000000';
 var ctx, canvas, img, pieces, mainWidth, mainHeight, pieceWidth, pieceHeight, currentPiece, currentDroppedPiece, mouse;
 var count = 0, maxCount = 0, gamesCount = 0;
 
-function init() {
-    img = new Image();
-    img.src = "/img/cordylidae.jpg";
-    img.addEventListener('load',onImage,false);
-}
-
-function setImage() {
-    img = new Image();
-    if (document.getElementById('setImage').value !== ''){
-        img.src = document.getElementById('setImage').value;
-    }else img.src = "/img/cordylidae.jpg";
-    if (document.getElementById('difficult').value !== ''){
-        PUZZLE_DIFFICULTY = document.getElementById('difficult').value;
-    }else PUZZLE_DIFFICULTY = 3;
-    document.getElementById('parent').hidden = false;
-    img.addEventListener('load',onImage,false);
-}
+let puzzle = {
+    init: function init() {
+        img = new Image();
+        img.src = "/img/cordylidae.jpg";
+        img.addEventListener('load',onImage,false);
+    },
+    setImage: function setImage(puzzle_href, puzzle_difficult) {
+        img = new Image();
+        let idSetImage = document.getElementById('setImage').value;
+        let idDifficult = document.getElementById('difficult').value;
+        if (puzzle_href) {
+            img.src = puzzle_href;
+        }else if (idSetImage !== '') {
+            img.src = idSetImage;
+        } else img.src = "/img/cordylidae.jpg";
+        if (puzzle_difficult) {
+            PUZZLE_DIFFICULTY = puzzle_difficult;
+        }else if (idDifficult<1 || idDifficult>20) {
+            document.getElementById('parent').hidden = true;
+        } else PUZZLE_DIFFICULTY = idDifficult;
+        document.getElementById('parent').hidden = false;
+        img.addEventListener('load', onImage, false);
+    }
+};
 
 function closeParent() {
     document.getElementById('parent').hidden = true;
+}
+function openParent() {
+    document.getElementById('parent').hidden = false;
 }
 
 function onImage (e) {
@@ -47,12 +57,12 @@ function setCanvas(){
     canvas.style.border = "1px solid black";
     let block = document.getElementById('block');
     let parent = document.getElementById('parent');
-    parent.style.height = parent.clientHeight-56 + "px";
+    parent.style.height = parent.clientHeight + "px";
     let centerOfHeight = parent.clientHeight/2-mainHeight/2;
     let centerOfWidth = parent.clientWidth/2-mainWidth/2;
     block.style.left = centerOfWidth + "px";
     block.style.top = centerOfHeight + "px";
-    if (mainWidth > parent.clientWidth || mainHeight > parent.clientHeight) {
+    if (mainWidth > parent.clientWidth || mainHeight > parent.clientHeight-56) {
         document.getElementById('sorryImageShouldBeSmaller').setAttribute('class', 'alert alert-info');
         document.getElementById('sorryImageShouldBeSmaller').innerText = 'Прости, но изображение дожно быть меньше, попробуй другую картинку';
         document.getElementById('parent').hidden = true;
@@ -235,8 +245,10 @@ function gameOver(){
     createTitle ('Ты собрал за ' + count + ' перемещение, ' + (count <= maxCount ? 'это новый рекорд' : 'рекорд ' + maxCount) + '... Повторим?');
     if (count < maxCount) maxCount = count;
     count = 0;
-    document.getElementById('MessageAfterGame').value = 'Я смог собрать пазл за ' + maxCount + ' перемещение, сможешь повторить?';
+    document.getElementById('MessageAfterGame').value = 'Я смог собрать пазл за ' + maxCount + ' перемещение, сможешь лучше?';
     document.getElementById('TagAfterGame').value = 'Пазл ' + img.src  + ' сложность: ' + PUZZLE_DIFFICULTY;
+    document.getElementById('puzzleHref').value = img.src;
+    document.getElementById('puzzleDifficult').value = PUZZLE_DIFFICULTY;
 }
 
 function shuffleArray (o) {

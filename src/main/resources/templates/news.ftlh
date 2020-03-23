@@ -1,6 +1,7 @@
 <#import "parts/commonP.ftlh" as c>
 <#include "parts/securityP.ftlh">
 <@c.page>
+    <#if known>
     <#if isAdmin || isStaff>
     <#include "parts/messageSender.ftlh">
     </#if>
@@ -41,4 +42,5 @@
         </#list>
         </form>
     </div>
+    </#if>
 </@c.page>

@@ -15,7 +15,7 @@
     <div class="form-group mt-3">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <input type="text" class="form-control border-dark ${(textError??)?string('is-invalid', '')}" value="<#if message??>${message.text}</#if>" name="text" placeholder="Введите сообщение" />
+                <input type="text" class="form-control border-dark ${(textError??)?string('is-invalid', '')}" value="" name="text" placeholder="Введите сообщение" />
                 <#if textError??>
                     <div class="invalid-feedback">
                         ${textError}
@@ -23,7 +23,7 @@
                 </#if>
             </div>
             <div class="form-group">
-                <input type="text" value="<#if message??>${message.tag}</#if>" class="form-control border-dark" name="tag" placeholder="Тэг">
+                <input type="text" value="" class="form-control border-dark" name="tag" placeholder="Тэг">
                 <#if tagError??>
                     <div class="invalid-feedback">
                         ${tagError}

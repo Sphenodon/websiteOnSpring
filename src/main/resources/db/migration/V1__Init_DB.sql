@@ -2,6 +2,17 @@ create sequence hibernate_sequence start 1 increment 1;
 
 create table message (
     id int8 not null,
+    puzzle_difficult int8 not null,
+    puzzle_href varchar(255),
+    filename varchar(255),
+    tag varchar(255),
+    text varchar(2048) not null,
+    user_id int8,
+    primary key (id)
+);
+
+create table news_messages (
+    id int8 not null,
     filename varchar(255),
     tag varchar(255),
     text varchar(2048) not null,
@@ -25,6 +36,10 @@ create table usr (
 );
 
 alter table if exists message
+    add constraint massage_user_fk
+    foreign key (user_id) references usr;
+
+alter table if exists mews_message
     add constraint massage_user_fk
     foreign key (user_id) references usr;
 

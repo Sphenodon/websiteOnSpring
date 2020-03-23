@@ -53,7 +53,9 @@
                   </div>
                   <#if message.author.id == currentUserId || isAdmin>
                      <div class="row">
-                        <a class="col btn border-dark" href="/user-messages/${message.author.id}?message=${message.id}">Редактировать</a>
+                        <#if message.author.id == currentUserId>
+                           <a class="col btn border-dark" href="/user-messages/${message.author.id}?message=${message.id}">Редактировать</a>
+                        </#if>
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
                         <input type="hidden" name="id" value="<#if message??>${message.id}</#if>" />
                         <input type="submit" class="col btn border-dark" value="Удалить"></input>

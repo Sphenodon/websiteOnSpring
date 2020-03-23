@@ -10,8 +10,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body onload="init();">
-    <#include "parts/navbarP.ftlh">
+
+<body onload="<#if href??>puzzle.setImage('${href}', ${difficult})<#else>puzzle.init()</#if>">
+<#include "parts/navbarP.ftlh">
+    <#if known>
     <div class="accordion" id="accordionProfile">
         <div class="card">
             <div class="card-header">
@@ -30,10 +32,11 @@
                     <div class="form-group row mt-1">
                         <label class="col-sm-2 col-form-label">Сложность</label>
                         <div class="col-sm-6">
-                            <input id="difficult" type="text" class="form-control" value="" placeholder="3"/>
+                            <input id="difficult" type="text" class="form-control" value="" placeholder="от 1 до 20"/>
                         </div>
                     </div>
-                    <button class="btn btn-dark" data-toggle="collapse" data-target="#collapsePictureChoice" type="submit" onclick="setImage();">Собрать свою картинку</button>
+                    <button id="setMyImage" class="btn btn-dark" data-toggle="collapse" data-target="#collapsePictureChoice" type="submit" onclick="puzzle.setImage();">Собрать свою картинку</button>
+                    <button class="btn btn-dark" data-toggle="collapse" data-target="#collapsePictureChoice" type="submit" onclick="openParent();">Вернуть прежнюю</button>
                 </div>
             </div>
         </div>
@@ -49,7 +52,7 @@
                                name="text"
                                id="MessageAfterGame"
                                class="form-control ${(textError??)?string('is-invalid', '')}"
-                               value="<#if message??>${message.text}</#if>"
+                               value=""
                                placeholder="Введите сообщение" />
                         <#if textError??>
                             <div class="invalid-feedback">
@@ -62,7 +65,7 @@
                                name="tag"
                                id="TagAfterGame"
                                class="form-control ${(textError??)?string('is-invalid', '')}"
-                               value="<#if message??>${message.tag}</#if>"
+                               value=""
                                placeholder="Хэштэг" />
                         <#if tagError??>
                             <div class="invalid-feedback">
@@ -70,6 +73,8 @@
                             </div>
                         </#if>
                     </div>
+                    <input type="hidden" name="puzzle_href" id="puzzleHref" value="" />
+                    <input type="hidden" name="puzzle_difficult" id="puzzleDifficult" value="" />
                     <input type="hidden" name="_csrf" value="${_csrf.token}" />
                     <div class="form-group">
                         <button type="submit" class="btn btn-dark">Добавить</button>
@@ -83,5 +88,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="puzzle.js"></script>
+    </#if>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <#import "parts/commonP.ftlh" as c>
-
+<#include "parts/securityP.ftlh">
 <@c.page>
+    <#if known>
     <h5>Привет, ${username}</h5>
     ${message!}
     <div class="accordion mt-4" id="accordionProfile">
@@ -45,7 +46,7 @@
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
+    </#if>
 </@c.page>
