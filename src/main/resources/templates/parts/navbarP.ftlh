@@ -31,8 +31,13 @@
       </#if>
       <#if known>
         <li class="nav-item">
-        <a class="nav-link text-white" href="/games">Игра</a>
+        <a class="nav-link text-white" href="/puzzle">Пазл</a>
       </li>
+      </#if>
+      <#if known>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/clicker?id=${currentUserId}">Кликер</a>
+        </li>
       </#if>
       <#if known>
         <li class="nav-item">

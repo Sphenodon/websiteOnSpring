@@ -1,0 +1,141 @@
+#score, .profile, .exit, #profile_inner, .research, .research_window, .close_btn, #next_age, .summary, .click, .upgrade, .game_window, .grow, .back {
+  position: absolute;
+}
+
+#warningMessage{
+  z-index: 5;
+}
+
+#back {
+  border: none;
+  background: none;
+  outline: none;
+  background-color:rgba(0,0,0,.3);
+}
+
+.profile {
+  width: 4vw;
+  height: 8vh;
+  right: 4%;
+  top: 0;
+}
+
+.profile img{
+  width: 100%;
+  height: 100%;
+}
+
+.exit {
+  width: 4vw;
+  height: 8vh;
+  right: 0;
+  top: 0;
+}
+
+.exit img{
+  width: 100%;
+  height: 100%;
+}
+
+#close_btn1, #research_btn, #close_btn2, #click_btn, #upgrade_btn, #close_btn {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+#profile_inner {
+  display: none;
+}
+
+#profile_inner, .research_window, .game_window {
+  width: 40vw;
+  height: 80vh;
+  background: #E7B168;
+  border: 0.1vh solid #F3D4A9;
+  border-radius: 3vh;
+  left: 0; right: 0;
+  bottom: 0; top: 0;
+  margin: auto;
+  z-index: 1;
+}
+
+.user_info {
+  width: 90%;
+  height: 80%;
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 5%;
+  margin: auto;
+}
+
+.research {
+  top: 55%;
+  left: 25%;
+}
+
+.research, .summary, .click, .upgrade, .grow  {
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+#research_window {
+  display: none;
+}
+
+.close_btn {
+  width: 10%;
+  height: 10%;
+  right: 1.5%;
+  top: 1%;
+}
+.researches, .upgrades {
+  height: 80%;
+  width: 90%;
+  margin: 13% auto 0;
+}
+
+#next_age {
+  width: 90%;
+  margin: 0 auto;
+  left: 0; right: 0;
+}
+
+.summary {
+  top: 65%;
+  left: 50%;
+}
+
+.click {
+  top: 80%;
+  left: 50%;
+}
+
+.upgrade {
+  top: 55%;
+  left: 75%;
+}
+
+#upgrade_window {
+  display: none;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: 33% 33% 34%;
+}
+
+.grow {
+  top: 68%;
+  left: 75%;
+}
+
+.back {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.back button{
+  background: none;
+  border: none;
+}

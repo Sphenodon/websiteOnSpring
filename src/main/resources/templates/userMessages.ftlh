@@ -35,6 +35,7 @@
          </form>
       </div>
    </div>
+</#if>
    <div class="card-columns">
       <#list messages as message>
          <div class="card my-3">
@@ -71,5 +72,4 @@
          Нет сообщений
       </#list>
    </div>
-</#if>
 </@c.page>

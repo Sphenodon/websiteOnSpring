@@ -1,8 +1,10 @@
 package com.example.proekt.controller;
 
+import com.example.proekt.domain.Clicker;
 import com.example.proekt.domain.Message;
 import com.example.proekt.domain.NewsMessages;
 import com.example.proekt.domain.User;
+import com.example.proekt.repos.ClickerRepo;
 import com.example.proekt.repos.MessageRepo;
 import com.example.proekt.repos.NewsMessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class MainController {
 
     @Autowired
     private NewsMessageRepo newsMessagesRepo;
+
+    @Autowired
+    private ClickerRepo clickerRepo;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -159,7 +164,7 @@ public class MainController {
         }
     }
 
-    @GetMapping("/games")
+    @GetMapping("/puzzle")
     public String Puzzle(
             @RequestParam(value = "href", required = false) String href,
             @RequestParam(value = "difficult", required = false) Long difficult,
@@ -171,7 +176,7 @@ public class MainController {
         return "puzzle";
     }
 
-    @PostMapping("/games")
+    @PostMapping("/puzzle")
     public String addMessageInPuzzle(
             @AuthenticationPrincipal User user,
             @Valid Message message,
@@ -192,6 +197,27 @@ public class MainController {
         }
 
         return "redirect:/main";
+    }
+
+    @GetMapping("/clicker")
+    public String clicker(
+            @RequestParam("id") Clicker clicker,
+            Model model
+    ){
+        model.addAttribute("clicker", clicker);
+        return "clicker";
+    }
+
+    @PostMapping("/clicker")
+    public String clickerP(
+            @AuthenticationPrincipal User user,
+            @RequestParam("id") Long id,
+            @Valid Clicker clicker
+    ) {
+        clicker.setId(id);
+        clicker.setAuthor(user);
+        clickerRepo.save(clicker);
+        return "clicker";
     }
 
     @GetMapping("/user-messages/{user}")

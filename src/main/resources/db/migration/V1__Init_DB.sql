@@ -1,4 +1,5 @@
 create sequence hibernate_sequence start 1 increment 1;
+create sequence clicker_sequence start 1 increment 100;
 
 create table message (
     id int8 not null,
@@ -35,14 +36,30 @@ create table usr (
     primary key (id)
 );
 
+create table clicker (
+    id int8 not null,
+    age int8 not null,
+    number1_age1 int8 not null,
+    number2_age1 int8 not null,
+    number3_age1 int8 not null,
+    number1_age2 int8 not null,
+    number2_age2 int8 not null,
+    number3_age2 int8 not null,
+    primary key (id)
+);
+
 alter table if exists message
-    add constraint massage_user_fk
+    add constraint message_user_fk
     foreign key (user_id) references usr;
 
-alter table if exists mews_message
-    add constraint massage_user_fk
+alter table if exists news_message
+    add constraint news_message_user_fk
     foreign key (user_id) references usr;
 
 alter table if exists user_role
     add constraint user_role_user_fk
+    foreign key (user_id) references usr;
+
+alter table if exists clicker
+    add constraint clicker_user_fk
     foreign key (user_id) references usr;
